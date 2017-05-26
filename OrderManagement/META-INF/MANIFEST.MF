@@ -8,3 +8,5 @@ Import-Package: crm,
  orderManagement,
  org.osgi.framework;version="1.8.0"
 Bundle-Activator: orderModel.Activator
+Require-Bundle: CustomerManagement;bundle-version="1.0.0",
+ BusinessObjects;bundle-version="1.0.0"

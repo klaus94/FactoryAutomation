@@ -23,8 +23,6 @@ public class OrderManager implements IOrderManagement{
 		BundleContext context = FrameworkUtil.getBundle(this.getClass()).getBundleContext();
 		ServiceReference<?> serviceReference = context.getServiceReference(ICustomerOrders.class.getName());
 		ico = (ICustomerOrders) context.getService(serviceReference);
-		
-		
 	}
 	
 	public List<Order> getAllOrders() {

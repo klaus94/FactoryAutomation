@@ -24,7 +24,7 @@ public class Activator implements BundleActivator {
 	@Override
 	public void start(BundleContext context) throws Exception {
 		//test things
-		System.out.println("starte test");
+		System.out.println("--- START TEST ---");
 		
 		ServiceReference<?> serviceReference = context.getServiceReference(ICustomerManagement.class.getName());
 		icm = (ICustomerManagement) context.getService(serviceReference);
