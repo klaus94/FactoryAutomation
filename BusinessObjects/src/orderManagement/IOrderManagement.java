@@ -2,6 +2,7 @@ package orderManagement;
 
 import java.util.List;
 
+import crm.Customer;
 import crm.Order;
 
 public interface IOrderManagement {
@@ -9,7 +10,6 @@ public interface IOrderManagement {
 	
 	Order findById(int id);
 	
-	void addOrder(Order o);
+	void addOrder(Order o, Customer c);
 	
-	void action();
 }

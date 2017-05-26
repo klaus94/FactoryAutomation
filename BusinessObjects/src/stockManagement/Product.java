@@ -3,10 +3,12 @@ package stockManagement;
 public class Product {
 	private boolean ready;
 	private final int id;
+	private String name;
 	
-	public Product(int id) {
+	public Product(int id, String name) {
 		this.id = id;
 		ready = false;
+		this.name = name;
 	}
 
 	public boolean isReady() {
@@ -21,5 +23,8 @@ public class Product {
 		return id;
 	}
 	
+	public String getName() {
+		return name;
+	}
 	
 }

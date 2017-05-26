@@ -9,3 +9,7 @@ Import-Package: crm,
  org.osgi.framework;version="1.8.0",
  stockManagement
 Bundle-Activator: Activator
+Require-Bundle: CustomerManagement;bundle-version="1.0.0",
+ OrderManagement;bundle-version="1.0.0",
+ StockManagement;bundle-version="1.0.0",
+ BusinessObjects;bundle-version="1.0.0"
