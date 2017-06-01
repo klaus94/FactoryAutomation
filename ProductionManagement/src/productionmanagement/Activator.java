@@ -7,6 +7,7 @@ import java.util.Properties;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.ServiceReference;
 
 import ch.ethz.iks.r_osgi.RemoteOSGiService;
 import productionManagement.IProductionManagement;
@@ -32,12 +33,12 @@ public class Activator implements BundleActivator {
 //		props.put("service.exported.configs","ecf.generic.server");
 //		// Register a new TimeServiceImpl with the above props
 //		bundleContext.registerService(IProductionManagement.class, new ProductionManagement(), props);
-		
+
 		Hashtable properties = new Hashtable();
 
 		properties.put(RemoteOSGiService.R_OSGi_REGISTRATION, Boolean.TRUE);
-		bundleContext.registerService(IProductionManagement.class.getName(), new ProductionManagement(), properties); 
-		
+		bundleContext.registerService(IProductionManagement.class.getName(), new ProductionManagement(), properties);
+
 		System.out.println("registered ProductionManagement");
 	}
 
