@@ -12,4 +12,6 @@ Bundle-Activator: Activator
 Require-Bundle: CustomerManagement;bundle-version="1.0.0",
  OrderManagement;bundle-version="1.0.0",
  StockManagement;bundle-version="1.0.0",
- BusinessObjects;bundle-version="1.0.0"
+ BusinessObjects;bundle-version="1.0.0",
+ ProductionManagement;bundle-version="1.0.0"
+Service-Component: OSGI-INF/component.xml

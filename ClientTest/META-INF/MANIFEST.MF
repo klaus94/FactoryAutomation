@@ -1,12 +1,11 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: ProductionManagement
-Bundle-SymbolicName: ProductionManagement
+Bundle-Name: ClientServerTest
+Bundle-SymbolicName: ClientTest
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: productionmanagement.Activator
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Import-Package: org.osgi.framework;version="1.3.0",
+Import-Package: org.osgi.framework;version="1.8.0",
  productionManagement
-Bundle-ActivationPolicy: lazy
+Bundle-Activator: Activator
 Require-Bundle: BusinessObjects;bundle-version="1.0.0"
 Service-Component: OSGI-INF/component.xml

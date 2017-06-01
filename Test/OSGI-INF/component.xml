@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" immediate="true" name="Test">
+   <reference bind="bind" cardinality="1..n" interface="productionManagement.IProductionManagement" name="ProductionManagement" policy="dynamic" unbind="unbind"/>
+   <implementation class="Activator"/>
+</scr:component>
+
+<!--?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="Test">
+   <implementation class="Activator"/>
+   <reference bind="bind" cardinality="1..1" interface="productionManagement.IProductionManagement" name="IProductionManagement" policy="dynamic"/>
+</scr:component-->
