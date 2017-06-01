@@ -1,6 +1,7 @@
 package productionmanagement;
 
 import java.util.Dictionary;
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Properties;
 
@@ -31,8 +32,8 @@ public class Activator implements BundleActivator {
 //		// Register a new TimeServiceImpl with the above props
 //		bundleContext.registerService(IProductionManagement.class, new ProductionManagement(), props);
 
-		bundleContext.registerService(IProductionManagement.class, new ProductionManagement(),  createRemoteServiceProperties());
-
+		bundleContext.registerService(IProductionManagement.class.getName(), new ProductionManagement(),  createRemoteServiceProperties());
+		
 		System.out.println("registered ProductionManagement");
 	}
 
