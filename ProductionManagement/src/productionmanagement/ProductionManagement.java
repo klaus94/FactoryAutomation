@@ -10,8 +10,13 @@ public class ProductionManagement implements IProductionManagement{
 	public Product ProduceProduct(Order order) {
 		// TODO Auto-generated method stub
 
-		System.out.println("test server");
-		return null;
+		return new Product(order.getId(), "name=" + order.getTitle());
+	}
+
+	@Override
+	public String getTest()
+	{
+		return "test";
 	}
 
 }

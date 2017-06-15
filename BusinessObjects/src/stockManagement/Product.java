@@ -4,7 +4,10 @@ public class Product {
 	private boolean ready;
 	private final int id;
 	private String name;
-	
+
+	public Product()
+	{id = 0;}
+
 	public Product(int id, String name) {
 		this.id = id;
 		ready = false;
@@ -22,9 +25,9 @@ public class Product {
 	public int getId() {
 		return id;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
-	
+
 }

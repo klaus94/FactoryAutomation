@@ -34,26 +34,34 @@ public class Activator implements BundleActivator {
 	@Override
 	public void start(BundleContext context) throws Exception
 	{
-		Test test = new Test();
-//		// get the RemoteOSGiService
-//		System.out.println("test " + RemoteOSGiService.class.getName());
-//		final ServiceReference sref = context.getServiceReference(RemoteOSGiService.class.getSimpleName());
-//
-//		if (sref == null) {
-//			throw new BundleException("No R-OSGi found");
-//		}
-//
-//		RemoteOSGiService remote = (RemoteOSGiService) context.getService(sref);
-//
-//		// connect
-//		remote.connect(new URI("r-osgi://fluidpaq1.inf.ethz.ch:9278"));
-//
+		//Test test = new Test();
+		// get the RemoteOSGiService
+		System.out.println("test " + RemoteOSGiService.class.getName());
+		String test = RemoteOSGiService.class.getName();
+		final ServiceReference sref = context.getServiceReference(RemoteOSGiService.class.getName());
+
+		if (sref == null) {
+			throw new BundleException("No R-OSGi found");
+		}
+
+		RemoteOSGiService remote = (RemoteOSGiService) context.getService(sref);
+
+		// connect
+		remote.connect(new URI("r-osgi://localhost:9279"));
+		//remote.connect(new URI("r-osgi://fluidpaq1.inf.ethz.ch:9278"));
+
 //		final RemoteServiceReference[] srefs = remote.getRemoteServiceReferences(new URI("r-osgi://fluidpaq1.inf.ethz.ch:9278"), IProductionManagement.class.getName(), null);
-//
-//		ipm = (IProductionManagement) remote.getRemoteService(srefs[0]);
-//
-//		System.out.println(ipm);
-//		System.out.println("Test Activator started");
+		final RemoteServiceReference[] srefs = remote.getRemoteServiceReferences(new URI("r-osgi://localhost:9279"), IProductionManagement.class.getName(), null);
+
+
+		ipm = (IProductionManagement) remote.getRemoteService(srefs[0]);
+
+//		System.out.println("this is the test: " + ipm.getTest());
+		Product p = ipm.ProduceProduct(new Order(1, "titel"));
+		System.out.println("got product: " + p.getId() + " name: " + p.getName() );
+
+		System.out.println(ipm);
+		System.out.println("Test Activator started");
 	}
 
 

@@ -7,7 +7,6 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Import-Package: org.osgi.framework;version="1.8.0",
  productionManagement
 Bundle-Activator: Activator
-Require-Bundle: BusinessObjects;bundle-version="1.0.0"
+Require-Bundle: BusinessObjects;bundle-version="1.0.0",
+ ch.ethz.iks.r_osgi.remote;bundle-version="1.0.9"
 Service-Component: OSGI-INF/component.xml
-Bundle-ClassPath: lib/remote-1.0.0.RC4.jar,
- bin/

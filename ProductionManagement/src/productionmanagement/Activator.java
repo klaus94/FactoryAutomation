@@ -39,6 +39,19 @@ public class Activator implements BundleActivator {
 		properties.put(RemoteOSGiService.R_OSGi_REGISTRATION, Boolean.TRUE);
 		bundleContext.registerService(IProductionManagement.class.getName(), new ProductionManagement(), properties);
 
+		ServiceReference[] test = bundleContext.getAllServiceReferences(null, null);
+
+//		for (ServiceReference sr: test)
+//		{
+//			for (String s: sr.getPropertyKeys())
+//			{
+//				//if (s.contains("RemoteOSGI"))
+//				System.out.println(sr.getProperty(s));
+//
+//			}
+//		}
+
+
 		System.out.println("registered ProductionManagement");
 	}
 

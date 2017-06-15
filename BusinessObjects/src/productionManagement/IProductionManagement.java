@@ -5,4 +5,5 @@ import stockManagement.Product;
 
 public interface IProductionManagement {
 	Product ProduceProduct(Order order);
+	String getTest();
 }
