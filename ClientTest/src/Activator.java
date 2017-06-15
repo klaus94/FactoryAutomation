@@ -34,24 +34,26 @@ public class Activator implements BundleActivator {
 	@Override
 	public void start(BundleContext context) throws Exception
 	{
-		// get the RemoteOSGiService
-		final ServiceReference sref = context.getServiceReference(RemoteOSGiService.R_OSGi_REGISTRATION);
-
-		if (sref == null) {
-			throw new BundleException("No R-OSGi found");
-		}
-
-		RemoteOSGiService remote = (RemoteOSGiService) context.getService(sref);
-
-		// connect
-		remote.connect(new URI("r-osgi://fluidpaq1.inf.ethz.ch:9278"));
-
-		final RemoteServiceReference[] srefs = remote.getRemoteServiceReferences(new URI("r-osgi://fluidpaq1.inf.ethz.ch:9278"), IProductionManagement.class.getName(), null);
-
-		ipm = (IProductionManagement) remote.getRemoteService(srefs[0]);
-
-		System.out.println(ipm);
-		System.out.println("Test Activator started");
+		Test test = new Test();
+//		// get the RemoteOSGiService
+//		System.out.println("test " + RemoteOSGiService.class.getName());
+//		final ServiceReference sref = context.getServiceReference(RemoteOSGiService.class.getSimpleName());
+//
+//		if (sref == null) {
+//			throw new BundleException("No R-OSGi found");
+//		}
+//
+//		RemoteOSGiService remote = (RemoteOSGiService) context.getService(sref);
+//
+//		// connect
+//		remote.connect(new URI("r-osgi://fluidpaq1.inf.ethz.ch:9278"));
+//
+//		final RemoteServiceReference[] srefs = remote.getRemoteServiceReferences(new URI("r-osgi://fluidpaq1.inf.ethz.ch:9278"), IProductionManagement.class.getName(), null);
+//
+//		ipm = (IProductionManagement) remote.getRemoteService(srefs[0]);
+//
+//		System.out.println(ipm);
+//		System.out.println("Test Activator started");
 	}
 
 
