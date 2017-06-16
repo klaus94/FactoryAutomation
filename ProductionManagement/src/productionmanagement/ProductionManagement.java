@@ -69,7 +69,7 @@ public class ProductionManagement implements IProductionManagement{
 			lastMachine = ps.getMachine();
 		}
 
-		return new Product(order.getId(), "name=" + order.getTitle());
+		return new Product(order.getId(), order.getTitle());
 	}
 
 	@Override

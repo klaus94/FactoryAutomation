@@ -56,12 +56,10 @@ public class Activator implements BundleActivator {
 
 		ipm = (IProductionManagement) remote.getRemoteService(srefs[0]);
 
-//		System.out.println("this is the test: " + ipm.getTest());
-		Product p = ipm.ProduceProduct(new Order(1, "titel"));
-		System.out.println("got product: " + p.getId() + " name: " + p.getName() );
-
-		System.out.println(ipm);
-		System.out.println("Test Activator started");
+		Order o = new Order(1, "green dice");
+		System.out.println("CLIENT  sending order: " + o.toString() + "...");
+		Product p = ipm.ProduceProduct(o);
+		System.out.println("CLIENT  got product: " + p.getId() + " name: " + p.getName() );
 	}
 
 

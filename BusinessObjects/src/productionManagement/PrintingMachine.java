@@ -16,7 +16,7 @@ public class PrintingMachine extends Machine {
 
 		System.out.println(name + " : starting " + ps.toString());
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			state = EMachineState.ERROR;
 			return;
