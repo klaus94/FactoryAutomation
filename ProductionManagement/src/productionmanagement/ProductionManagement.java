@@ -1,11 +1,13 @@
 package productionmanagement;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import crm.Order;
+import productionManagement.EMachineState;
 import productionManagement.ERobotState;
 import productionManagement.FinishingMachine;
 import productionManagement.IProductionManagement;
@@ -50,27 +52,64 @@ public class ProductionManagement implements IProductionManagement{
 		}
 	}
 
+
+//	public Product ProduceProduct_old(Order order)
+//	{
+//		// idea: start new thread for handling this order -> new orders can be handled
+//
+//		Process process = order2Process(order);
+//
+//		Machine lastMachine = null;
+//		for (ProcessStep ps: process.getProcessSteps())
+//		{
+//			takeProduct(lastMachine);
+//			transport(ps.getMachine().getName());
+//			putProduct(ps.getMachine());
+//			ps.execute();
+//
+//			lastMachine = ps.getMachine();
+//		}
+//
+//		return new Product(order.getId(), order.getTitle());
+//	}
+
+
 	@Override
 	public Product ProduceProduct(Order order)
 	{
-		// idea: start new thread for handling this order -> new orders can be handled
-
-		Process process = order2Process(order);
-
-		Machine lastMachine = null;
-		for (ProcessStep ps: process.getProcessSteps())
+		Thread t = new Thread()
 		{
-			takeProduct(lastMachine);
-			transport(ps.getMachine().getName());
-			putProduct(ps.getMachine());
-			ps.execute();
+		    public void run()
+		    {
+		    	Process process = order2Process(order);
+
+				Machine lastMachine = null;
+				for (ProcessStep ps: process.getProcessSteps())
+				{
+					takeProduct(lastMachine, order);
+					transport(ps.getMachine().getName(), order);
+					putProduct(ps.getMachine(), order);
+					ps.execute(order);
 
 
-			lastMachine = ps.getMachine();
+					lastMachine = ps.getMachine();
+				}
+		    }
+		};
+
+		t.start();
+
+
+		try {
+			t.join();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 		return new Product(order.getId(), order.getTitle());
 	}
+
 
 	@Override
 	public String getTest()
@@ -90,7 +129,7 @@ public class ProductionManagement implements IProductionManagement{
 		return process;
 	}
 
-	private void transport(String target)
+	private void transport(String target, Order order)
 	{
 		boolean foundFreeRobot = false;
 
@@ -100,15 +139,20 @@ public class ProductionManagement implements IProductionManagement{
 			{
 				if (rob.getState() == ERobotState.READY)
 				{
-					rob.transportTo(target);
+					rob.transportTo(target, order);
 
 					foundFreeRobot = true;
 					break;
 				}
 			}
 
+			if (foundFreeRobot)
+				break;
+
 			// wait 1s
+
 			try {
+				System.out.println(new Date().toString() + " : " + "manager is waiting for free robot..." + " (" + order + ")");
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
@@ -117,30 +161,78 @@ public class ProductionManagement implements IProductionManagement{
 		}
 	}
 
-	private void takeProduct(Machine machine)
+	private void takeProduct(Machine machine, Order order)
 	{
 		if (machine != null)
 		{
-			RobotArm currentArm = robotArms.get(machine.getName());
-			if (currentArm != null)
+			boolean foundFreeRobot = false;
+			RobotArm arm = robotArms.get(machine.getName());
+			if (arm == null)
+				return;
+
+			while(!foundFreeRobot)
 			{
-				currentArm.takeProduct();
+				if (machine.getState() == EMachineState.READY && arm.getState() == ERobotState.READY)
+				{
+					arm.takeProduct(order);
+
+					foundFreeRobot = true;
+					break;
+				}
+
+				if (foundFreeRobot)
+					break;
+
+				// wait 1s
+				try {
+					System.out.println(new Date().toString() + " : " + machine + " is waiting..." + " (" + order + ")");
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
+
 		}
 
 	}
 
-	private void putProduct(Machine machine)
+	private void putProduct(Machine machine, Order order)
 	{
 		if (machine != null)
 		{
-			RobotArm currentArm = robotArms.get(machine.getName());
-			if (currentArm != null)
-			{
-				currentArm.putProduct();
-			}
-		}
+			boolean foundFreeRobot = false;
+			RobotArm arm = robotArms.get(machine.getName());
+			if (arm == null)
+				return;
 
+			while(!foundFreeRobot)
+			{
+
+				if (machine.getState() == EMachineState.READY && arm.getState() == ERobotState.READY)
+				{
+					arm.putProduct(order);
+
+					foundFreeRobot = true;
+					break;
+				}
+
+				if (foundFreeRobot)
+					break;
+
+				// wait 1s
+				try {
+					System.out.println(new Date().toString() + " : " + machine + " is waiting..." + " (" + order + ")");
+					Thread.sleep(1000);
+
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+		}
 	}
+
 
 }

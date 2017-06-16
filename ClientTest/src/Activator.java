@@ -15,6 +15,9 @@ import crm.ICustomerOrders;
 import crm.Order;
 import orderManagement.IOrderManagement;
 import productionManagement.IProductionManagement;
+import productionManagement.Machine;
+import productionManagement.Process;
+import productionManagement.ProcessStep;
 import stockManagement.IStockManagement;
 import stockManagement.Product;
 
@@ -56,10 +59,11 @@ public class Activator implements BundleActivator {
 
 		ipm = (IProductionManagement) remote.getRemoteService(srefs[0]);
 
-		Order o = new Order(1, "green dice");
-		System.out.println("CLIENT  sending order: " + o.toString() + "...");
-		Product p = ipm.ProduceProduct(o);
-		System.out.println("CLIENT  got product: " + p.getId() + " name: " + p.getName() );
+		Order o1 = new Order(1, "green cube");
+		Order o2 = new Order(2, "red ball");
+
+		startOrder(o1);
+		startOrder(o2);
 	}
 
 
@@ -78,4 +82,18 @@ public class Activator implements BundleActivator {
 		}
 
 	}
+
+	private void startOrder(Order order)
+	{
+		new Thread()
+		{
+		    public void run()
+		    {
+		    	System.out.println("CLIENT  sending order: " + order.toString() + "...");
+				Product p = ipm.ProduceProduct(order);
+				System.out.println("CLIENT: GOT Product back: " + p);
+		    }
+		}.start();
+	}
+
 }

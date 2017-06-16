@@ -1,5 +1,7 @@
 package productionManagement;
 
+import crm.Order;
+
 public abstract class Machine {
 	protected String name;
 	protected EMachineState state;
@@ -9,7 +11,7 @@ public abstract class Machine {
 		state = EMachineState.READY;
 	}
 
-	public abstract void execute(ProcessStep ps);
+	public abstract void execute(ProcessStep ps, Order order);
 
 	public EMachineState getState() {
 		return state;

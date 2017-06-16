@@ -1,5 +1,7 @@
 package productionManagement;
 
+import crm.Order;
+
 public class ProcessStep {
 	private Machine machine;
 
@@ -8,9 +10,9 @@ public class ProcessStep {
 		this.machine = machine;
 	}
 
-	public void execute()
+	public void execute(Order order)
 	{
-		machine.execute(this);
+		machine.execute(this, order);
 	}
 
 	public Machine getMachine()

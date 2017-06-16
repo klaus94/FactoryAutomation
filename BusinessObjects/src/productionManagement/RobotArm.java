@@ -1,5 +1,9 @@
 package productionManagement;
 
+import java.util.Date;
+
+import crm.Order;
+
 public class RobotArm{
 
 	protected String name;
@@ -14,12 +18,13 @@ public class RobotArm{
 		return state;
 	}
 
-	public void takeProduct()
+	public void takeProduct(Order order)
 	{
-		System.out.println(name + ": taking product");
+//		System.out.println(new Date().toString() + " : " + name + ": taking product from order: " + order);
 
 		state = ERobotState.TRANSPORTING;
 		try {
+			System.out.println(new Date().toString() + " : " + name + ": taking product from order: " + order);
 			Thread.sleep(500);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
@@ -27,15 +32,16 @@ public class RobotArm{
 		}
 		state = ERobotState.READY;
 
-		System.out.println(name + ": finished taking product");
+//		System.out.println(new Date().toString() + " : " + name + ": finished taking product from order: " + order);
 	}
 
-	public void putProduct()
+	public void putProduct(Order order)
 	{
-		System.out.println(name + ": putting product");
+//		System.out.println(new Date().toString() + " : " + name + ": putting product from order: " + order);
 
 		state = ERobotState.TRANSPORTING;
 		try {
+			System.out.println(new Date().toString() + " : " + name + ": putting product from order: " + order);
 			Thread.sleep(500);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
@@ -43,7 +49,7 @@ public class RobotArm{
 		}
 		state = ERobotState.READY;
 
-		System.out.println(name + ": finished putting product");
+//		System.out.println(new Date().toString() + " : " + name + ": finished putting product from order: " + order);
 
 	}
 
