@@ -1,6 +1,5 @@
 package tud.st.cbse.task4.main;
 
-import Test.Test;
 import tud.st.cbse.task4.building.*;
 import tud.st.cbse.task4.stakeholder.Person;
 
@@ -18,6 +17,10 @@ public class ExampleStarter {
 	public void run(){
 		House h1 = buildSimpleHouse();
 		h1.printStructure();
+
+		// test 3f)
+		h1.visit(otherPerson);		// entering private room
+
 		h1.visit(owner);
 		h1.visit(otherPerson);
 	}

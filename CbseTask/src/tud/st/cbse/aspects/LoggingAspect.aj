@@ -2,7 +2,7 @@ package tud.st.cbse.aspects;
 
 import tud.st.cbse.task4.main.*;
 
-// 3a
+// task 3a
 public aspect LoggingAspect
 {
 	pointcut startRunning() : call(public void ExampleStarter.run());
