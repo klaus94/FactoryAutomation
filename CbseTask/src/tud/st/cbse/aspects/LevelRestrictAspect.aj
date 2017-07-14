@@ -11,7 +11,7 @@ public aspect LevelRestrictAspect
 	{
 		if (hp instanceof Level)
 		{
-			System.out.println("Error - Level can not have member of type Level");
+			System.out.println("Error - Level can not have member of type Level (3b)");
 			return;
 		}
 		else

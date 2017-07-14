@@ -13,7 +13,7 @@ public aspect PrivateRoomAspect
 			House house = findHouse(r);
 			if (house == null || house.getOwner() != p)
 			{
-				System.out.println("entering the private room is prohibited!");
+				System.out.println("entering the private room is prohibited! (3f)");
 			}
 		}
 	}

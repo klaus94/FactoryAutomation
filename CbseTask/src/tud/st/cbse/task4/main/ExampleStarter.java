@@ -25,6 +25,7 @@ public class ExampleStarter {
 		h1.visit(otherPerson);
 	}
 
+
 	private House buildSimpleHouse(){
 		House house = new House("Street 1", owner);
 		Level l0 = new Level(0);

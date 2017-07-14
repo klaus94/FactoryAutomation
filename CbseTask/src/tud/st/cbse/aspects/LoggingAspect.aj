@@ -7,12 +7,12 @@ public aspect LoggingAspect
 {
 	pointcut startRunning() : call(public void ExampleStarter.run());
 	before() : startRunning(){
-		System.out.println("Start running...");
+		System.out.println("Start running... (3a)");
 	}
 
 	pointcut stopRunning() : call(public void ExampleStarter.run());
 	after() : stopRunning(){
-		System.out.println("Stop running...");
+		System.out.println("Stop running... (3a)");
 	}
 
 }

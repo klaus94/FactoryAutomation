@@ -1,0 +1,47 @@
+Aspekt-Orientierte Programmierung
+
+1a)
+Scattering... Eine Funktionalität (concern) ist über mehrere Module verstreut
+Tangling... Code der zu einer Funktionalität gehört wird vermischt mit Code, der eine andere Funktion erfüllt
+-> Implementierung von Funktionalität ist nicht modular -> Unübersichtlichkeit, schlechte Wartbarkeit, schlechte Wiederverwendbarkeit, schwerere Erweiterbarkeit, Interferenzen zwischen Codeteilen, die verschiedene Funktionen implementieren
+
+1b)
+Cross-cutting... Wechsel innerhalb eines Moduls zwischen mehreren (concerns)Funktionen
+
+1c)
+Pointcut... Beschreibung eines Punktes (anhand eines Musters) an dem Verhalten von einem Aspekt eingefügt werden soll
+Join Point... Punkt im Programm, an dem Verhalten von Aspekten kombiniert wird (z.B. Methodenaufruf)
+Advice... Code der ausgeführt wird, wenn ein Join Point erreicht wird
+Weaving... Kompositionstechnik, bei der durch einen speziellen Compiler die verschiedenen Aspekte eines Projektes verbunden werden (durch Copy & Paste)
+
+1d)
+dynamische vs statische JoinPoints
+static... position in code
+dynamic... position in controlflow
+
+1e)
+dynamisches vs statisches Weaving
+static... weaving on compiletime
+dynamic... weaving on runtime
+
+1f)
+Component-model: Aspect(Pointcut + Advice-Code) + Core-Code(join-points)
+Composition-technique: weaving (cross-cut-graph generieren -> aspect-weaver kopiert auf dieser Basis Code an die JoinPoints die zu den Spezifikationen der PointCuts passen)
+Composition-language: AspectJ definiert eigene Sprache (Java-Erweiterung) zum Sezifizieren von point-cuts; declarative Spezifikation vom AdviceCode zum JoinPoint (interpretiert vom Weaver)
+
+2a)
+generic component.. Komponente mit Platzhaltern -> um Komponente zu benutzen muss man die Platzhalter (slots) ausfüllen (bind)
+
+2b)
+fully generic language: jedes Wort in der Sprache kann durch einen Platzhalter ersetzt werden, der zu einem späteren Zeitpunkt ersetzt wird -> hohe Flexibilität, keine Typsicherheit (außer man definiert ein Metamodell, das Typen definiert)
+
+2c)
+hook... Punkt im Programm, der mit einem extend-Operator erweitert werden kann um beliebig viel neues Verhalten
+slot... Punkt im Programm, in den mit einem bind-Operator neues Verhalten eingefügt werden kann
+difference: Kardinalität, Operator
+
+2d)
+AOP + generic programming vs generic components
+AOP... implizite hooks, deklarative Beschreibung, gegen Scattering
+generic components... slots, imperative Beschreibung, nicht so gut gegen Scattering
+beides... grey-box, generic components etwas heller, gegen Tangling

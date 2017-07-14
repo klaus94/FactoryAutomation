@@ -10,7 +10,7 @@ public aspect MarkBathroom
 	// 2) narrow pointcut to calls from Bathroom-objects with target(Bathroom)
 	after(Bathroom br): call(public void Room.enter(*)) && target(Bathroom) && this(br)
     {
-		System.out.println("mark bathroom not clean");
+		System.out.println("mark bathroom not clean (3c)");
 	    br.setClean(false);
 	}
 

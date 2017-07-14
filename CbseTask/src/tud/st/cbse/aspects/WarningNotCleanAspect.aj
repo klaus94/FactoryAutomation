@@ -8,6 +8,6 @@ public aspect WarningNotCleanAspect
 	before(Room r): call(public void Room.enter(*)) && this(r)
     {
 		if (!r.isClean())
-			System.out.println("Attention, room is not clean!");
+			System.out.println("Attention, room is not clean! (3d)");
 	}
 }
